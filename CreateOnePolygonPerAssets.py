@@ -9,6 +9,7 @@ from arcgis.features import FeatureLayerCollection, FeatureLayer
 config =configparser.ConfigParser()
 config.read(r'C:\Scripts\CONFIG\config.ini')
 
+print('logging into AGOL')
 AGOL_portal = config['AGOL']['AGOL_portal']
 AGOL_username = config['AGOL']['AGOL_username']
 AGOL_password = config['AGOL']['AGOL_password']
@@ -320,8 +321,10 @@ def append_to_agol(in_service_assets, gis, layer):
 
 
 if __name__ == "__main__":
+    print("Performing geospatial operations")
     in_service_assets = main()
 
+    print("Performing AGOL operations")
     append_to_agol(
     in_service_assets,
     gis,
