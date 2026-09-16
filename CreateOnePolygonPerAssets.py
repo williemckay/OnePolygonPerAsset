@@ -1,4 +1,4 @@
-import arcpy
+import arcpy, configparser
 import os
 import shutil
 import tempfile
@@ -6,7 +6,15 @@ import zipfile
 from arcgis.gis import GIS
 from arcgis.features import FeatureLayerCollection, FeatureLayer
 
-gis = GIS('home')
+config =configparser.ConfigParser()
+config.read(r'C:\Scripts\CONFIG\config.ini')
+
+AGOL_portal = config['AGOL']['AGOL_portal']
+AGOL_username = config['AGOL']['AGOL_username']
+AGOL_password = config['AGOL']['AGOL_password']
+AGOL_profile = AGOL_username
+
+gis = GIS(AGOL_portal, AGOL_username, AGOL_password)
 
 flayer = gis.content.get('785a9a9dd604477aba4425ff5d12be13')
 layer = flayer.layers[0]
